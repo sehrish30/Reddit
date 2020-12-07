@@ -1,0 +1,7 @@
+{
+  "name": "Product_Hunt",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
