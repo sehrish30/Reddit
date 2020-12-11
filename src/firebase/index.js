@@ -30,3 +30,8 @@ export const logOut = () => {
 export const resetPassword = (email) => {
   return auth.sendPasswordResetEmail(email);
 };
+
+// check email and password to reauthenticate user
+export const checking = (email, password) => {
+  return firebase.auth.EmailAuthProvider.credential(email, password);
+};
