@@ -73,7 +73,7 @@ const App = () => {
               <Route component={() => <Redirect to="/home" />} />
             </IonRouterOutlet>
 
-            <IonTabBar slot="bottom">
+            <IonTabBar slot="bottom" color="medium">
               <IonTabButton tab="home" href="/home">
                 <IonIcon icon={listCircleOutline} />
                 <IonLabel>Hunt</IonLabel>

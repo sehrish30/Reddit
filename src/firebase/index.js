@@ -35,3 +35,6 @@ export const resetPassword = (email) => {
 export const checking = (email, password) => {
   return firebase.auth.EmailAuthProvider.credential(email, password);
 };
+
+//Products Ref Collection
+export const productsRef = db.collection("products");
