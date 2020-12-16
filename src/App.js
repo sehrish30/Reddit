@@ -11,6 +11,7 @@ import {
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import Home from "./pages/Home";
+import Product from "./pages/Product";
 import {
   createOutline,
   listCircleOutline,
@@ -70,6 +71,7 @@ const App = () => {
               <Route path="/register" component={Signup} />
               <Route path="/login" component={Login} />
               <Route path="/forgot" component={Forgot} />
+              <Route path="/product/:productId" component={Product} />
               <Route component={() => <Redirect to="/home" />} />
             </IonRouterOutlet>
 

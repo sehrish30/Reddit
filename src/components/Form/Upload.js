@@ -4,7 +4,6 @@ import { IonButton, isPlatform } from "@ionic/react";
 import { Plugins, CameraResultType } from "@capacitor/core";
 import { dataURItoBlob } from "../../utils/file";
 import "./Upload.css";
-import { defineCustomElements } from "@ionic/pwa-elements/loader";
 
 const { Camera } = Plugins;
 
@@ -25,14 +24,14 @@ const Upload = ({ onChange, placeholder, files, multiple, ...rest }) => {
 
   return (
     <div className="file-input-container">
-      {isPlatform("mobile") && (
+      {!isPlatform("mobile") && (
         <input
-          onChange={handleSelectFile}
           id="file"
           type="file"
           className="file-input"
           accept="image/*"
           multiple={multiple}
+          onChange={handleSelectFile}
         />
       )}
       <IonButton color="medium" onClick={handleSelectFile} {...rest}>

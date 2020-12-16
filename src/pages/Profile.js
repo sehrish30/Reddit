@@ -64,8 +64,7 @@ const Profile = () => {
                 <IonButton
                   expand="block"
                   routerLink={"/edit-profile"}
-                  color="primary"
-                  fill="outline"
+                  color="secondary"
                 >
                   Edit Profile
                 </IonButton>
@@ -73,7 +72,12 @@ const Profile = () => {
             </IonRow>
             <IonRow>
               <IonCol>
-                <IonButton expand="block" color="primary" onClick={logoutUser}>
+                <IonButton
+                  fill="outline"
+                  expand="block"
+                  color="secondary"
+                  onClick={logoutUser}
+                >
                   Logout
                 </IonButton>
               </IonCol>

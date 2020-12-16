@@ -5,3 +5,11 @@
 .product-description {
   font-size: 0.8rem;
 }
+
+.product-image {
+  margin: 0 auto;
+}
+
+.photo-select {
+  cursor: pointer;
+}

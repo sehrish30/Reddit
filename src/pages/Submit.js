@@ -47,6 +47,7 @@ const Submit = () => {
         ),
       ]);
 
+      // returns a new Promise that resolves to an array of resolved Values
       const productPhotos = await Promise.all(
         photos.map((f, index) =>
           storage
