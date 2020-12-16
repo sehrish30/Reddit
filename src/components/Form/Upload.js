@@ -14,7 +14,7 @@ const Upload = ({ onChange, placeholder, files, multiple, ...rest }) => {
       const image = await Camera.getPhoto({
         quality: 90,
         allowEditing: false,
-        resultType: CameraResultType.DataUri,
+        resultType: CameraResultType.DataUrl,
       });
       const blob = dataURItoBlob(image.dataUrl);
       onChange([blob]);
