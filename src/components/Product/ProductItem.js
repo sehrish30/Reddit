@@ -19,6 +19,7 @@ import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { useHistory } from "react-router-dom";
 import {
   caretUp,
+  chatbubbleEllipsesOutline,
   chevronUpCircleOutline,
   personCircleOutline,
   timeOutline,
@@ -71,6 +72,19 @@ const ProductItem = ({ product, url, browser }) => {
                 <IonText className="upvote-count">
                   {formatDistanceToNow(product.created)}
                 </IonText>
+                {product.comments.length > 0 && (
+                  <>
+                    {" | "}
+                    <IonIcon
+                      className="upvote-count"
+                      icon={chatbubbleEllipsesOutline}
+                    />
+                    {"  "}
+                    <IonText className="upvote-count">
+                      {product.comments.length}
+                    </IonText>
+                  </>
+                )}{" "}
               </p>
             </IonLabel>
             <IonButton slot="end" onClick={addUpvote} size="Large">

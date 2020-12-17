@@ -10,6 +10,8 @@ import {
 import { closeCircleOutline } from "ionicons/icons";
 import { useParams, useHistory } from "react-router-dom";
 import productService from "../services/product";
+import ProductComment from "../components/Product/ProductComment";
+import CommentModal from "../components/Product/CommentModal";
 
 import { productsRef } from "../firebase";
 import { Plugins } from "@capacitor/core";
@@ -25,6 +27,7 @@ const Product = () => {
   let history = useHistory();
   const { user } = useContext(UserContext);
   const [product, setProduct] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const productInfo = productsRef.doc(productId);
 
@@ -47,6 +50,42 @@ const Product = () => {
         .addUpvote(user, productId)
         .then((newProduct) => setProduct(newProduct))
         .catch(() => history.push("/login"));
+    }
+  };
+
+  const handleOpenModal = () => {
+    if (!user) {
+      history.push("/login");
+    } else {
+      setShowModal(true);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleAddComment = (commentText) => {
+    if (!user) {
+      history.push("/login");
+    } else {
+      productInfo.get().then((doc) => {
+        if (doc.exists) {
+          const previousComments = doc.data().comments;
+          const newComment = {
+            postedBy: { id: user.uid, name: user.displayName },
+            created: Date.now(),
+            text: commentText,
+          };
+          const updatedComments = [...previousComments, newComment];
+          productInfo.update({ comments: updatedComments });
+          setProduct((prevState) => ({
+            ...prevState,
+            comments: updatedComments,
+          }));
+        }
+      });
+      setShowModal(false);
     }
   };
 
@@ -84,6 +123,12 @@ const Product = () => {
         action={handleDeleteProduct}
       />
       <IonContent>
+        <CommentModal
+          isOpen={showModal}
+          title="New Comment"
+          sendAction={handleAddComment}
+          closeAction={handleCloseModal}
+        />
         {product && (
           <>
             <IonGrid>
@@ -98,9 +143,25 @@ const Product = () => {
                   >
                     Upvote
                   </IonButton>
+                  <IonButton
+                    color="secondary"
+                    fill="clear"
+                    onClick={() => handleOpenModal()}
+                    size="small"
+                  >
+                    Comment
+                  </IonButton>
                 </IonCol>
               </IonRow>
             </IonGrid>
+            {product.comments.map((comment, index) => (
+              <ProductComment
+                key={index}
+                comment={comment}
+                product={product}
+                setProduct={setProduct}
+              />
+            ))}
           </>
         )}
       </IonContent>

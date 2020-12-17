@@ -34,3 +34,9 @@
   justify-content: center;
   flex-direction: column;
 }
+
+.comment-text {
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: normal;
+}
