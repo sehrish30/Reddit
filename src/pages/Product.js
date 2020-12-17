@@ -1,7 +1,15 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { IonCol, IonContent, IonGrid, IonPage, IonRow } from "@ionic/react";
+import {
+  IonButton,
+  IonCol,
+  IonContent,
+  IonGrid,
+  IonPage,
+  IonRow,
+} from "@ionic/react";
 import { closeCircleOutline } from "ionicons/icons";
 import { useParams, useHistory } from "react-router-dom";
+import productService from "../services/product";
 
 import { productsRef } from "../firebase";
 import { Plugins } from "@capacitor/core";
@@ -20,7 +28,7 @@ const Product = () => {
 
   const productInfo = productsRef.doc(productId);
 
-  const getProduct = () => {
+  const getProduct = useCallback(() => {
     productInfo
       .get()
       .then((doc) => {
@@ -29,6 +37,17 @@ const Product = () => {
       .catch((err) => {
         console.error(err);
       });
+  }, [productInfo]);
+
+  const handleAddVote = () => {
+    if (!user) {
+      history.push("/login");
+    } else {
+      productService
+        .addUpvote(user, productId)
+        .then((newProduct) => setProduct(newProduct))
+        .catch(() => history.push("/login"));
+    }
   };
 
   useEffect(() => {
@@ -72,6 +91,13 @@ const Product = () => {
                 <IonCol className="ion-text-center">
                   <ProductItem product={product} browser={openBrowser} />
                   <ProductPhotos photos={product.photos} />
+                  <IonButton
+                    color="secondary"
+                    onClick={() => handleAddVote()}
+                    size="small"
+                  >
+                    Upvote
+                  </IonButton>
                 </IonCol>
               </IonRow>
             </IonGrid>

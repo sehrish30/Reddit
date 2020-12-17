@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { IonCard, IonImg, IonItem, IonList, IonThumbnail } from "@ionic/react";
-import { PhotosAlbumType } from "@capacitor/core";
+
 import "./product.css";
 
 const ProductPhotos = ({ photos }) => {

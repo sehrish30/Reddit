@@ -13,3 +13,24 @@
 .photo-select {
   cursor: pointer;
 }
+
+.product-upvote {
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: normal;
+}
+
+.product-upvote-icon {
+  vertical-align: middle;
+}
+
+.upvote-count {
+  vertical-align: middle;
+}
+
+.upvote-button_inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
