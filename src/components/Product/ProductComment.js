@@ -35,7 +35,7 @@ const ProductComment = ({ comment, product, setProduct }) => {
         };
         // double checking the existence of comment
         const updatedComment = previousComment.map((item) =>
-          item.created ? newComment : item
+          item.created === comment.created ? newComment : item
         );
 
         productInfo.update({ comments: updatedComment });

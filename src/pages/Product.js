@@ -91,7 +91,6 @@ const Product = () => {
 
   useEffect(() => {
     getProduct();
-    console.log("PRODUCT", product, productId);
   }, [productId]);
 
   const handleDeleteProduct = async () => {
