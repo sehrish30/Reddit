@@ -90,7 +90,8 @@ const Profile = () => {
                 <IonButton
                   expand="block"
                   routerLink={"/register"}
-                  color="primary"
+                  color="secondary"
+                  fill="outline"
                 >
                   Sign Up
                 </IonButton>
@@ -101,8 +102,7 @@ const Profile = () => {
                 <IonButton
                   expand="block"
                   routerLink={"/login"}
-                  color="primary"
-                  fill="outline"
+                  color="secondary"
                 >
                   Log In
                 </IonButton>

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Product_Hunt</string>
+    <string name="title_activity_main">Product_Hunt</string>
+    <string name="package_name">io.reddit.starter</string>
+    <string name="custom_url_scheme">io.reddit.starter</string>
+</resources>
